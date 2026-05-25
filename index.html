@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faryal Bahawi | Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0ea;
+    --bg2: #ede7de;
+    --surface: #faf7f4;
+    --surface2: #f0ebe3;
+    --border: #d9cfc3;
+    --border2: #c8baaa;
+    --accent: #8b6b4a;
+    --accent2: #6b4f35;
+    --accent-light: #e8ddd0;
+    --text: #2c2419;
+    --text2: #6b5c4e;
+    --text3: #9c8878;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Jost', sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: rgba(245,240,234,0.93); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; letter-spacing: 0.04em; color: var(--text); text-decoration: none; font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 0.7rem; color: var(--text3); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; gap: 4rem; }
+  .hero-tag { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-tag::before { content: ''; display: inline-block; width: 2.5rem; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--serif); font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc { font-size: 1rem; color: var(--text2); line-height: 1.85; margin-bottom: 2.5rem; font-weight: 300; max-width: 460px; }
+  .hero-desc strong { color: var(--text); font-weight: 500; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 1.75rem; text-decoration: none; transition: all 0.25s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+  .btn-ghost { border: 1px solid var(--border2); color: var(--text2); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right { display: flex; flex-direction: column; gap: 1px; }
+  .hero-stat { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem 2rem; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; margin-bottom: 1px; }
+  .hero-stat:hover { background: var(--surface2); }
+  .stat-num { font-family: var(--serif); font-size: 2.75rem; font-weight: 300; color: var(--text); line-height: 1; }
+  .stat-num em { font-style: italic; color: var(--accent); }
+  .stat-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; text-align: right; max-width: 160px; line-height: 1.5; }
+
+  .divider { height: 1px; background: var(--border); }
+  section { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 300; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 3.5rem; }
+  h2 em { font-style: italic; color: var(--accent); }
+
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--text2); font-weight: 300; line-height: 1.9; margin-bottom: 1.25rem; font-size: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .fact-item { padding: 1.25rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 1.25rem; align-items: flex-start; }
+  .fact-item:first-child { border-top: 1px solid var(--border); }
+  .fact-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--accent); font-style: italic; flex-shrink: 0; width: 2rem; line-height: 1.3; }
+  .fact-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.2rem; }
+  .fact-desc { font-family: var(--mono); font-size: 0.7rem; color: var(--text3); line-height: 1.5; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .skill-group { background: var(--surface); padding: 2rem 1.75rem; transition: background 0.2s; }
+  .skill-group:hover { background: var(--surface2); }
+  .skill-group-title { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag { font-family: var(--mono); font-size: 0.65rem; color: var(--text2); background: var(--accent-light); padding: 0.25rem 0.6rem; border-radius: 2px; }
+
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .project-card { background: var(--surface); padding: 2.5rem; display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: background 0.2s; }
+  .project-card:hover { background: var(--surface2); }
+  .project-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+  .project-number { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.1em; margin-bottom: 1.25rem; }
+  .project-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.75rem; line-height: 1.2; color: var(--text); }
+  .project-desc { font-size: 0.875rem; color: var(--text2); line-height: 1.75; flex: 1; margin-bottom: 1.5rem; font-weight: 300; }
+  .project-metric-block { display: flex; flex-direction: column; gap: 1px; }
+  .project-metric { background: var(--bg2); padding: 1.25rem 1.5rem; display: flex; align-items: baseline; gap: 0.75rem; }
+  .metric-num { font-family: var(--serif); font-size: 2.25rem; font-weight: 300; color: var(--accent); font-style: italic; line-height: 1; }
+  .metric-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); line-height: 1.5; max-width: 180px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .project-tag { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); border: 1px solid var(--border); padding: 0.2rem 0.5rem; }
+  .project-link { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-decoration: none; letter-spacing: 0.08em; margin-top: auto; display: inline-flex; align-items: center; gap: 0.4rem; }
+
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.05em; margin-bottom: 0.35rem; }
+  .exp-org { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.05em; font-weight: 500; }
+  .exp-role { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.75rem; color: var(--text); }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-bullets li { font-size: 0.875rem; color: var(--text2); padding-left: 1.25rem; position: relative; line-height: 1.7; font-weight: 300; }
+  .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
+
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .edu-card { background: var(--surface); padding: 2rem; transition: background 0.2s; }
+  .edu-card:hover { background: var(--surface2); }
+  .edu-year { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+  .edu-degree { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.4rem; line-height: 1.3; }
+  .edu-school { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem; font-weight: 300; }
+  .edu-detail { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); }
+
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .contact-sub { color: var(--text2); font-size: 0.95rem; font-weight: 300; line-height: 1.8; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .contact-right { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; }
+  .contact-detail { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item-label { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .contact-item-value { font-size: 0.9rem; color: var(--text); }
+  .contact-item-value a { color: var(--accent); text-decoration: none; }
+  .contact-item-value a:hover { text-decoration: underline; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); letter-spacing: 0.05em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-tag { animation: fadeUp 0.7s ease both; }
+  h1 { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-desc { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-right { animation: fadeUp 0.7s 0.2s ease both; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.wide { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">Faryal Bahawi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="home" class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Data Scientist & ML Engineer</div>
+    <h1>Faryal<br><em>Bahawi</em></h1>
+    <p class="hero-desc">M.S. Data Science candidate at the University of New Haven. I build <strong>end-to-end AI systems</strong> — RAG pipelines, computer vision models, cloud data infrastructure — with a focus on <strong>NLP and healthcare applications</strong>.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/Faryal-Bahawi" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.linkedin.com/in/faryal-bahawi-28027b205/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="stat-num">740<em>×</em></div>
+      <div class="stat-label">mAP improvement, YOLOv8</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">3.75<em>/5</em></div>
+      <div class="stat-label">RAG pipeline answer quality</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">~35<em>%</em></div>
+      <div class="stat-label">data inconsistency reduction</div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat-num">2<em>×</em></div>
+      <div class="stat-label">full scholarship recipient</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Unusual path.<br><em>Intentional destination.</em></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I came to data science through medicine and finance — not the typical route. I studied general medicine in Afghanistan, then finance at the American University of Afghanistan, where I discovered data science and knew immediately that was where I was headed.</p>
+      <p>That background is not a detour. It gives me <strong>domain fluency most DS candidates lack</strong> — I understand clinical data, health outcomes, and the real stakes of model decisions in humanitarian and healthcare contexts.</p>
+      <p>When the Taliban took over, I continued my education in Qatar with the support of AUAF, then earned a second full scholarship to the University of New Haven. I am building toward a December 2026 M.S. in Data Science and looking for internship or junior roles where I can contribute and keep growing fast.</p>
+    </div>
+    <div>
+      <div class="fact-item">
+        <div class="fact-num">01</div>
+        <div>
+          <div class="fact-title">Full Scholarship × 2</div>
+          <div class="fact-desc">AUAF Honor Award + University of New Haven</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">02</div>
+        <div>
+          <div class="fact-title">Afghanistan → Qatar → USA</div>
+          <div class="fact-desc">International background across three countries</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">03</div>
+        <div>
+          <div class="fact-title">Medical + Finance + Data Science</div>
+          <div class="fact-desc">Domain knowledge across healthcare and humanitarian sectors</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-num">04</div>
+        <div>
+          <div class="fact-title">UN Migration Agency (IOM)</div>
+          <div class="fact-desc">Field experience in humanitarian operations, Doha</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2>What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">NLP & LLMs</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HuggingFace</span>
+        <span class="skill-tag">Sentence-BERT</span>
+        <span class="skill-tag">RAG Pipelines</span>
+        <span class="skill-tag">Gemma</span>
+        <span class="skill-tag">Dense Retrieval</span>
+        <span class="skill-tag">Transformers</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">ML & Computer Vision</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">YOLOv8</span>
+        <span class="skill-tag">Transfer Learning</span>
+        <span class="skill-tag">SMOTE</span>
+        <span class="skill-tag">Roboflow</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud & Data Eng</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS S3/EC2/Athena</span>
+        <span class="skill-tag">Mage.ai</span>
+        <span class="skill-tag">ETL Pipelines</span>
+        <span class="skill-tag">PySpark</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Hadoop</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Git/GitHub</span>
+        <span class="skill-tag">Jupyter</span>
+        <span class="skill-tag">pandas/NumPy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Things I've <em>built</em></h2>
+  <div class="projects-grid">
+    <a href="https://github.com/Faryal-Bahawi/uniguide-ai" target="_blank" class="project-card wide">
+      <div>
+        <div class="project-number">01 — NLP / RAG</div>
+        <div class="project-title">UniGuide AI — RAG-Based Admissions Q&A System</div>
+        <p class="project-desc">Built a full Retrieval-Augmented Generation pipeline from scratch using Sentence-BERT for dense retrieval and Gemma-2b-it as the instruction-tuned generator. Engineered a 220-chunk corpus from 7 official admissions documents with custom keyword-based retrieval boosting, eliminating cross-topic retrieval errors.</p>
+        <div class="project-tags">
+          <span class="project-tag">HuggingFace</span>
+          <span class="project-tag">Sentence-BERT</span>
+          <span class="project-tag">Gemma-2b-it</span>
+          <span class="project-tag">RAG</span>
+          <span class="project-tag">Dense Retrieval</span>
+        </div>
+        <span class="project-link">View on GitHub →</span>
+      </div>
+      <div class="project-metric-block">
+        <div class="project-metric">
+          <div class="metric-num">3.75/5</div>
+          <div class="metric-label">avg answer quality across 10 domain-specific questions</div>
+        </div>
+        <div class="project-metric" style="margin-top:1px;">
+          <div class="metric-num">2→5</div>
+          <div class="metric-label">per-question score improvement on critical queries</div>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/Faryal-Bahawi/Campus-Sign-Detection-yolov8-DL" target="_blank" class="project-card">
+      <div class="project-number">02 — Computer Vision</div>
+      <div class="project-title">Campus Signage Detection — YOLOv8</div>
+      <p class="project-desc">Fine-tuned YOLOv8n on a custom 3-class campus signage dataset with random hyperparameter search across learning rate, momentum, and weight decay. Implemented early stopping for an additional +5.1 mAP50 gain.</p>
+      <div class="project-metric" style="margin: 1.25rem 0;">
+        <div class="metric-num">740×</div>
+        <div class="metric-label">mAP50 improvement (0.001 → 0.740)</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">YOLOv8</span><span class="project-tag">PyTorch</span><span class="project-tag">Roboflow</span><span class="project-tag">Transfer Learning</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
+
+    <a href="https://github.com/Faryal-Bahawi/AWS-Ride-Analytics-Platform" target="_blank" class="project-card">
+      <div class="project-number">03 — Cloud / Data Engineering</div>
+      <div class="project-title">RidePulse — AWS Lakehouse Analytics</div>
+      <p class="project-desc">Designed a Lakehouse architecture on AWS using Mage.ai to orchestrate ETL pipelines processing Uber ride-sharing datasets end-to-end. Built analytics-ready datasets and enabled Power BI reporting.</p>
+      <div class="project-metric" style="margin: 1.25rem 0;">
+        <div class="metric-num">~35%</div>
+        <div class="metric-label">reduction in data inconsistencies</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">AWS S3/EC2/Athena</span><span class="project-tag">Mage.ai</span><span class="project-tag">Power BI</span><span class="project-tag">ETL</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Where I've <em>worked</em></h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Mar 2025 – Present</div>
+        <div class="exp-org">University of New Haven</div>
+      </div>
+      <div>
+        <div class="exp-role">Admissions Data & Operations Assistant</div>
+        <ul class="exp-bullets">
+          <li>Manage and validate applicant records in Slate CRM, maintaining data accuracy across admissions reporting workflows</li>
+          <li>Calculate and verify GPA data for incoming applicants, ensuring consistent standards across applicant cohorts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Feb – Oct 2024</div>
+        <div class="exp-org">IOM – UN Migration</div>
+      </div>
+      <div>
+        <div class="exp-role">Project Assistant</div>
+        <ul class="exp-bullets">
+          <li>Supported case management for displaced families and children across multinational humanitarian programs</li>
+          <li>Collaborated with international staff across cultural and language barriers in a fast-paced field environment</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2>Academic <em>background</em></h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">Jan 2025 – Dec 2026</div>
+      <div class="edu-degree">M.S. Data Science</div>
+      <div class="edu-school">University of New Haven · West Haven, CT</div>
+      <div class="edu-detail">Full Scholarship</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">Sep 2019 – May 2024</div>
+      <div class="edu-degree">B.B.A. Finance</div>
+      <div class="edu-school">American University of Afghanistan · Doha, Qatar</div>
+      <div class="edu-detail">Minor: Data Science · Full Scholarship · Honor Award ×2</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2016 – 2022</div>
+      <div class="edu-degree">Bachelor of General Medicine</div>
+      <div class="edu-school">Kabul University of Medical Science · Kabul, Afghanistan</div>
+      <div class="edu-detail">General Medicine</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label">Contact</div>
+      <h2>Let's <em>talk.</em></h2>
+      <p class="contact-sub">Open to DS internships and junior roles. Especially interested in NLP, healthcare, and humanitarian applications.</p>
+      <div class="contact-links">
+        <a href="mailto:faryalbahawi963@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/faryal-bahawi-28027b205/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/Faryal-Bahawi" target="_blank" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-detail">
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value"><a href="mailto:faryalbahawi963@gmail.com">faryalbahawi963@gmail.com</a></div>
+        </div>
+        <div>
+          <div class="contact-item-label">Location</div>
+          <div class="contact-item-value">West Haven, Connecticut, USA</div>
+        </div>
+        <div>
+          <div class="contact-item-label">LinkedIn</div>
+          <div class="contact-item-value"><a href="https://www.linkedin.com/in/faryal-bahawi-28027b205/" target="_blank">faryal-bahawi-28027b205</a></div>
+        </div>
+        <div>
+          <div class="contact-item-label">GitHub</div>
+          <div class="contact-item-value"><a href="https://github.com/Faryal-Bahawi" target="_blank">github.com/Faryal-Bahawi</a></div>
+        </div>
+        <div>
+          <div class="contact-item-label">Availability</div>
+          <div class="contact-item-value">Open to internships & junior roles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>2026 Faryal Bahawi</p>
+  <p>West Haven, Connecticut</p>
+</footer>
+
+</body>
+</html>
