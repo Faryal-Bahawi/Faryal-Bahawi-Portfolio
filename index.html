@@ -370,31 +370,32 @@ footer p span{color:#e6555a}
       <div class="project-img">
         <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" style="background:#f5f0eb">
           <rect width="400" height="160" fill="#e8e0d8"/>
-          <!-- Drug network graph visualization -->
-          <circle cx="200" cy="80" r="18" fill="rgba(139,111,71,0.15)" stroke="#8b6f47" stroke-width="2"/>
-          <text x="200" y="84" text-anchor="middle" fill="#8b6f47" font-size="7" font-family="monospace" font-weight="bold">warfarin</text>
-          <circle cx="110" cy="50" r="14" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
-          <text x="110" y="54" text-anchor="middle" fill="#a0756a" font-size="6" font-family="monospace">fluconazole</text>
-          <circle cx="290" cy="50" r="14" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
-          <text x="290" y="54" text-anchor="middle" fill="#a0756a" font-size="6" font-family="monospace">ibuprofen</text>
-          <circle cx="110" cy="120" r="14" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
-          <text x="110" y="124" text-anchor="middle" fill="#a0756a" font-size="6" font-family="monospace">aspirin</text>
-          <circle cx="290" cy="120" r="14" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
-          <text x="290" y="124" text-anchor="middle" fill="#a0756a" font-size="6" font-family="monospace">cyclosporine</text>
-          <circle cx="55" cy="80" r="12" fill="rgba(160,117,106,0.08)" stroke="#c4bab2" stroke-width="1"/>
-          <text x="55" y="84" text-anchor="middle" fill="#7a6e68" font-size="6" font-family="monospace">digoxin</text>
-          <circle cx="345" cy="80" r="12" fill="rgba(160,117,106,0.08)" stroke="#c4bab2" stroke-width="1"/>
-          <text x="345" y="84" text-anchor="middle" fill="#7a6e68" font-size="6" font-family="monospace">clozapine</text>
-          <!-- edges -->
-          <line x1="182" y1="68" x2="122" y2="58" stroke="#8b6f47" stroke-width="1.5"/>
-          <line x1="218" y1="68" x2="278" y2="58" stroke="#8b6f47" stroke-width="1.5"/>
-          <line x1="182" y1="92" x2="122" y2="112" stroke="#8b6f47" stroke-width="1.5"/>
-          <line x1="218" y1="92" x2="278" y2="112" stroke="#8b6f47" stroke-width="1.5"/>
-          <line x1="182" y1="80" x2="67" y2="80" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
-          <line x1="218" y1="80" x2="333" y2="80" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
-          <line x1="97" y1="58" x2="67" y2="74" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
-          <line x1="123" y1="112" x2="277" y2="112" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="200" y="150" text-anchor="middle" fill="#8b949e" font-size="9" font-family="monospace">Drug Interaction Knowledge Graph — 544 nodes, 3,557 edges</text>
+          <!-- edges first so nodes appear on top -->
+          <line x1="200" y1="80" x2="145" y2="52" stroke="#8b6f47" stroke-width="1.5"/>
+          <line x1="200" y1="80" x2="255" y2="52" stroke="#8b6f47" stroke-width="1.5"/>
+          <line x1="200" y1="80" x2="145" y2="118" stroke="#8b6f47" stroke-width="1.5"/>
+          <line x1="200" y1="80" x2="255" y2="118" stroke="#8b6f47" stroke-width="1.5"/>
+          <line x1="200" y1="80" x2="90" y2="80" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="200" y1="80" x2="310" y2="80" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="145" y1="52" x2="90" y2="72" stroke="#c4bab2" stroke-width="1" stroke-dasharray="3,2"/>
+          <!-- center node -->
+          <circle cx="200" cy="80" r="20" fill="rgba(139,111,71,0.18)" stroke="#8b6f47" stroke-width="2"/>
+          <text x="200" y="77" text-anchor="middle" fill="#8b6f47" font-size="7.5" font-family="monospace" font-weight="bold">warfarin</text>
+          <text x="200" y="88" text-anchor="middle" fill="#a0756a" font-size="6" font-family="monospace">central node</text>
+          <!-- surrounding nodes -->
+          <circle cx="145" cy="45" r="16" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
+          <text x="145" y="49" text-anchor="middle" fill="#a0756a" font-size="6.5" font-family="monospace">fluconazole</text>
+          <circle cx="255" cy="45" r="16" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
+          <text x="255" y="49" text-anchor="middle" fill="#a0756a" font-size="6.5" font-family="monospace">ibuprofen</text>
+          <circle cx="145" cy="122" r="16" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
+          <text x="145" y="126" text-anchor="middle" fill="#a0756a" font-size="6.5" font-family="monospace">aspirin</text>
+          <circle cx="255" cy="122" r="16" fill="rgba(139,111,71,0.1)" stroke="#a0756a" stroke-width="1.5"/>
+          <text x="255" y="126" text-anchor="middle" fill="#a0756a" font-size="6.5" font-family="monospace">cyclosporine</text>
+          <circle cx="84" cy="80" r="13" fill="rgba(160,117,106,0.08)" stroke="#c4bab2" stroke-width="1"/>
+          <text x="84" y="84" text-anchor="middle" fill="#7a6e68" font-size="6" font-family="monospace">digoxin</text>
+          <circle cx="316" cy="80" r="13" fill="rgba(160,117,106,0.08)" stroke="#c4bab2" stroke-width="1"/>
+          <text x="316" y="84" text-anchor="middle" fill="#7a6e68" font-size="6" font-family="monospace">clozapine</text>
+          <text x="200" y="152" text-anchor="middle" fill="#8b949e" font-size="8.5" font-family="monospace">Drug Interaction Knowledge Graph — 544 nodes, 3,557 edges</text>
         </svg>
       </div>
       <div class="project-body">
